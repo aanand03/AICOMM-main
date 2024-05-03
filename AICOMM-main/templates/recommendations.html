@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Recommendations{% endblock title %}
+{% block recommendations %}
+<div class="container" >
+    <h1>API Data</h1>
+    {% if data %}
+        <ul>
+            {% for item in data %}
+                <li>{{ item.Rating }}: {{ item.Review_Text }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No data available.</p>
+    {% endif %}
+    </div>
+{% endblock recommendations %}
+

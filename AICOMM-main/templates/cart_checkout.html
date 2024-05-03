@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}Checkout{% endblock title %}
+{% block cart_checkout %}
+<section class="h-100 gradient-custom">
+    <div class="container py-5">
+      <div class="row d-flex justify-content-center my-4">
+        <div class="col-md-8">
+          <div class="card mb-4">
+            <div class="card-header py-3">
+              <h5 class="mb-0" >Checkout -  {{cart_items_length}}  items</h5>
+            </div>
+            <div class="card-body">
+  {% if cart_items %}
+   
+      {% for item in cart_items %}
+      <div class="card">
+        <img style="border: gold solid 4px; margin:5px; height:150px; width:150px; " class="tshirt_img" src="{{ item.product.p_img.url }}" class="card-img-top" alt="{{ item.product.p_name }}">
+        <div class="card-body">
+            <h5 class="card-title">{{ item.product.p_name }}</h5>
+            <h3 class="card-text">Rs. {{ item.product.p_price }}</p>
+        </div>
+    </div>
+      {% endfor %}
+    
+    <!-- Add form fields for billing and shipping information -->
+    <form method="post" action="{% url 'buy_now' %}">
+      {% csrf_token %}
+      <input type="hidden" name="from_cart" value="True">
+      <!-- Form fields for billing and shipping information -->
+      <button class="btn btn-secondary" style="margin-top:2px;" type="submit">Place Order</button>
+    </form>
+  {% else %}
+    <p>Your cart is empty.</p>
+  {% endif %}
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

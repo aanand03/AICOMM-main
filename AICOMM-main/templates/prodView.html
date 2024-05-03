@@ -1,0 +1,26 @@
+
+{% extends "base.html" %}
+{% block title %}{{product.p_name}}{% endblock title %}
+{% block product_view %}
+
+<div class="container ">
+<div class="flex flex-col">    
+<div class="row mt-4 mb-4 ml-4">
+    <img style="border: white solid 4px;" src="{{product.p_img}}">
+    <div>
+        <ul>
+   <li> <label class="ml-4 "style="font-size: 25px;">{{product.p_name}}</label>
+    <li><label class="ml-4"style="font-size: larger;">Rs {{product.p_price}}</label>
+        <li><label class="ml-4"style="font-size: larger;">Color: {{product.p_color}} <img style="border: white solid 2px; height:70px;" src="{{product.p_img}}"></label> 
+            <li><label class="ml-4"style="font-size: larger;">Size: <div style="border: white solid 2px;">S M L XL</div></li> </label> 
+        </ul>
+    </div>
+</div>
+<div class="row ml-3 mb-4">
+    <div class="btn_main padding_10">
+        <div class="padding_10 " id="pr{{product.id}}"><a style="color:white"; href="{% url 'checkout' myid=product.id %}"><button class="padding_10 paddingr_10">Buy Now</button></a></div>
+        <div class="ml-3" id="pr{{product.id}}"><a href="{% url 'add_to_cart' product.id %}"><button class="padding_10 paddingr_10">Add to Cart</button></a></div>
+</div>
+</div>
+</div>
+{% endblock product_view %}
