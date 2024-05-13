@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}Recommendations{% endblock title %}
+{% block recommendations %}
+<div class="container" >
+    <h1>API Data</h1>
+    {% if data %}
+        <ul>
+            {% for item in data %}
+            <!--To view all reviews for all users-->
+               <!--<li>Review No : {{ item.id }}</li> --> 
+                {% for review in reviews %}
+               
+                    <div class="container">
+                        <style>
+                            .rev_box{
+                                border:white solid 3px;
+                                margin-top: 15px;
+                                margin-bottom: 5px;
+                                border-radius:5px;
+                                width:250px;
+                            }
+                            </style>
+                        {%if item.id == review.item.id%}
+                        <div style="display:flex; margin-top:10px;">
+                        
+                        <img style="border: gold solid 4px; margin:5px; height:200px; " src="{{ review.item.item_img}}">       
+                        <div class="rev_box" style="margin-left:40px;">
+                        
+                        <p>Item name: {{ review.item.item_name}}</p>
+                        <p>Review : {{ review.review_text }}</p>
+                        <p>Rating: {{ review.rating }}</p>
+                        
+                        </div>
+                        
+                    </div>
+                    {% endif %}   
+                    </div>
+                        <!-- Add code to display other review details like rating, created_at, etc. -->
+                    {% endfor %}
+                  
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No data available.</p>
+    {% endif %}
+    </div>
+{% endblock recommendations %}
+

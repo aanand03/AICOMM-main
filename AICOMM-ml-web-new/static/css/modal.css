@@ -1,0 +1,105 @@
+.modal {
+    display: none; /* Hide the modal by default */
+    position: fixed; /* Position the modal */
+    z-index: 9999; /* Set a high z-index to ensure the modal appears above other elements */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* Enable scrolling if content exceeds the viewport */
+    background-color: rgba(0,0,0,0.4); /* Black background with opacity */
+}
+
+/* Style the modal content */
+.modal-content {
+    background-color: #fefefe; /* White background */
+    margin: 15% auto; /* Center the modal vertically and horizontally */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 95%; /* Set the width of the modal content */
+}
+
+/* Style the close button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: rgb(218, 22, 22);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Add custom styles for profile info */
+.profile_info {
+    margin-bottom: 20px;
+}
+
+.profile_info h4 {
+    margin-bottom: 1px;
+    font-size: 20px;
+}
+
+.profile_bio {
+    display: flex;
+    flex-direction: column;
+    height:200px;
+    width:200px;
+}
+
+.profile_bio img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.prof_det {
+    margin-bottom: 2px;
+}
+
+/* Add custom styles for recommendations section */
+.recommendations h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.recommended_product {
+    margin-bottom: 20px;
+}
+
+.recommended_product img {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px;
+}
+
+.tags {
+    margin-bottom: 10px;
+}
+
+.tag {
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 3px;
+    font-size: 14px;
+}
+
+.buy_now_btn {
+    background-color: #24103b;;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.buy_now_btn:hover {
+    background-color: rgb(189, 156, 11);
+}

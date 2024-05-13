@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+{% block title %}{{products.0.p_category}}{% endblock title %}
+{% block logo %}{{products.0.p_category}}{% endblock logo %}
+{% block banner %}
+<div class="banner_section layout_padding">
+   <div class="container">
+      <div id="my_slider" class="carousel slide" data-ride="carousel">
+         <div class="carousel-inner">
+            <div class="carousel-item active">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <h1 class="banner_taital">Best Deals <br>Shop Now</h1>
+                     <div class="buynow_bt"><a href="#">Buy Now</a></div>
+                  </div>
+               </div>
+            </div>
+            <div class="carousel-item">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <h1 class="banner_taital">Best Deals <br>Shop Now</h1>
+                     <div class="buynow_bt"><a href="#">Buy Now</a></div>
+                  </div>
+               </div>
+            </div>
+            <div class="carousel-item">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <h1 class="banner_taital">Best Deals <br>Shop Now</h1>
+                     <div class="buynow_bt"><a href="#">Buy Now</a></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <a class="carousel-control-prev" href="#my_slider" role="button" data-slide="prev">
+         <i class="fa fa-angle-left"></i>
+         </a>
+         <a class="carousel-control-next" href="#my_slider" role="button" data-slide="next">
+         <i class="fa fa-angle-right"></i>
+         </a>
+      </div>
+   </div>
+</div>
+{% endblock banner %}
+
+
+{% block tops %}
+{% for products, range, nSlides in allProds %}
+<div class="fashion_section">
+   <style>
+   #main_slider{{forloop.counter}} a.carousel-control-next {
+      right: 615px;
+      top: 105%;
+  }
+  
+  #main_slider{{forloop.counter}} a.carousel-control-prev {
+      left: 615px;
+      top: 105%;
+  }
+  
+  #main_slider{{forloop.counter}} .carousel-control-next,
+  #main_slider{{forloop.counter}} .carousel-control-prev {
+      width: 55px;
+      height: 55px;
+      background-color: #30302e;
+      opacity: 1;
+      font-size: 30px;
+      color: #ffffff;
+  }
+  
+  #main_slider{{forloop.counter}} .carousel-control-next:focus,
+  #main_slider{{forloop.counter}} .carousel-control-next:hover,
+  #main_slider{{forloop.counter}} .carousel-control-prev:focus,
+  #main_slider{{forloop.counter}} .carousel-control-prev:hover {
+      color: #fff;
+      background-color: #24103b;
+  }
+</style>
+   <div id="main_slider{{forloop.counter}}" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+         <div class="carousel-item active">
+            <div class="container">
+               
+               <h1 class="fashion_taital">{{products.0.p_category}}</h1>
+               <div class="fashion_section_2">
+                  <div class="row">
+                     
+                     {% for product in products%}
+                           <div class="col-lg-4 col-sm-4">
+                               <div class="box_main">
+                                   <h4 class="shirt_text">{{ product.p_name }}</h4>
+                                   <p class="price_text">Price  <span style="color: #262626;">₹{{ product.p_price }}</span></p>
+                                   <div class="tshirt_img"><a href="{% url 'prodView' myid=product.id %}"><img src="{{ product.p_img.url }}"></a></div>
+                                   <div class="btn_main">
+                                    <div class="btn btn-secondary"  id="pr{{product.id}}"><a style="color:white"; href="{% url 'checkout' myid=product.id %}">Buy Now</a></div>
+                                   
+                                    <!--Add to cart-->   
+                                       <div class="seemore_bt cart" id="pr{{product.id}}"><a href="{% url 'add_to_cart' product.id %}">Add to Cart</a></div>
+                           </div>
+                        </div>
+                     </div>
+                     {% if forloop.counter|divisibleby:3 and forloop.counter > 0 and not forloop.last %}
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="carousel-item">
+                           <div class="container">
+                              <h1 class="fashion_taital">{{products.0.p_category}}</h1>
+                              <div class="fashion_section_2">
+                                 <div class="row">
+                     {% endif %}
+                     {%endfor%}
+                     
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <a class="carousel-control-prev" href="#main_slider{{forloop.counter}}" role="button" data-slide="prev">
+      <i class="fa fa-angle-left"></i>
+      </a>
+      <a class="carousel-control-next" href="#main_slider{{forloop.counter}}" role="button" data-slide="next">
+      <i class="fa fa-angle-right"></i>
+      </a>
+   </div>
+</div>
+{% endfor %}
+{% endblock tops %}
+
+
+
+
+<!--Cart Jquery-->
+
+   {% block js %}
+   <script>
+   //console.log("Working")
+   if(localStorage.getItem('cart')==null)
+   {
+      var cart={};
+   }
+   else
+   {
+      cart=JSON.parse(localStorage.getItem('cart'))
+      document.getElementById('cart').innerHTML=Object.keys(cart).length;
+   }
+   //console.log(cart)
+   $('.cart').click(function(){
+      //console.log("Clicked")
+      var idStr=this.id.toString()
+      //console.log(idStr)
+      if(cart[idStr]!=undefined){
+         cart[idStr]+=1;
+      }
+      else{
+         cart[idStr]=1;
+      }
+      //console.log(cart)
+      localStorage.setItem('cart',JSON.stringify(cart));
+   });
+   </script>
+   {% endblock js %}
+
+

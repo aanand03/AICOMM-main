@@ -1,0 +1,73 @@
+.App {
+  text-align: center;
+  background:#fff;
+  opacity: 90%;
+  border-radius:15px;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+button{
+  width:90px;
+  height:45px;
+  padding:2px;
+  background-color:#282c34; 
+  border:3px solid #282c34;
+  border-radius: 25px;
+  cursor: pointer;
+  color:#fff;
+}
+.submit button:hover{
+  border:3px solid rgb(30, 30, 61);
+  background-color: #fff;
+  color:rgb(30, 30, 61);
+}
+.btn-logout{
+  width:90px;
+  height:45px;
+  padding:2px;
+  background-color:#fff; 
+  border:3px solid #282c34;
+  border-radius: 25px;
+  cursor: pointer;
+  color:#282c34;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+.a-redirect{
+
+    color: none;
+    text-decoration: none;
+cursor: pointer;
+font-weight: bold;
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
