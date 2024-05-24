@@ -1,0 +1,68 @@
+
+{% extends "base.html" %}
+{% block title %}{{product.p_name}}{% endblock title %}
+{% block product_view %}
+{% load static %}
+<div class="container ">
+<div class="flex flex-col">    
+<div class="row mt-4 mb-4 ml-4">
+    <img style="border: white solid 4px;" src="{{product.p_img.url}}">
+    <div>
+        <ul>
+   <li> <label class="ml-4 "style="font-size: 25px;">{{product.p_name}}</label>
+    <li><label class="ml-4"style="font-size: larger;">Rs {{product.p_price}}</label>
+        <li><label class="ml-4"style="font-size: larger;">Color: {{product.p_color}} <img style="border: white solid 2px; height:70px;" src="{{product.p_img.url}}"></label> 
+            <li><label class="ml-4"style="font-size: larger;">Size: <div style="border: white solid 2px;">S M L XL</div></li> </label> 
+        </ul>
+    </div>
+</div>
+<div class="row ml-3 mb-4">
+    <div class="btn_main padding_10">
+        <div class="padding_10 " id="pr{{product.id}}"><a  href="{% url 'checkout' myid=product.id %}"><button class="padding_10 paddingr_10">Buy Now</button></a></div>
+        <div class="ml-3" id="pr{{product.id}}"><a href="{% url 'add_to_cart' product.id %}"><button class="padding_10 paddingr_10">Add to Cart</button></a></div>
+</div>
+</div>
+</div>
+<!--Reviews-->
+<div class="container" >
+    <p>Reviews</p>
+    {% if data %}
+        <ul>
+            {% for item in data %}
+            
+                {% if item.purchase_history_details.product.id == product.id %}
+                {% load static %}
+                    <div class="container">
+                        <style>
+                            .rev_box{
+                                border:white solid 3px;
+                                margin-top: 15px;
+                                margin-bottom: 5px;
+                                border-radius:5px;
+                                width:250px;
+                            }
+                            </style>
+                    
+                        <div style="display:flex; margin-top:10px;">
+                        
+                        <img style="border: gold solid 4px; margin:5px; height:200px; " src="{{ item.purchase_history_details.item_img}}">       
+                        <div class="rev_box" style="margin-left:40px;">
+                            
+                        <p>Review : {{ item.review_text }}</p>
+                        <p>Rating: {{ item.rating }}</p>
+                        
+                        </div>
+                        
+                    </div>
+                    
+                    </div>
+                        <!-- Add code to display other review details like rating, created_at, etc. 
+                    -->
+                {% endif %}
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No reviews.</p>
+    {% endif %}
+    </div>
+{% endblock product_view %}

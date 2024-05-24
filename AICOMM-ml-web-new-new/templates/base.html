@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!--Favicon-->
+      <link rel="apple-touch-icon" sizes="180x180" href="static/images/apple-touch-icon.png">
+      <link rel="icon" type="image/png" sizes="32x32" href="static/images/favicon-32x32.png">
+      <link rel="icon" type="image/png" sizes="16x16" href="static/images/favicon-16x16.png">
+      <link rel="manifest" href="static/images/site.webmanifest">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- Title -->
+      <title>AICOMM | {% block title %}{% endblock title %}</title>
+      <!-- bootstrap css -->
+      <link rel="stylesheet" type="text/css" href="static/css/bootstrap.min.css">
+      <!-- stylesheet -->
+      <link rel="stylesheet" type="text/css" href="static/css/style.css">
+      <link rel="stylesheet" type="text/css" href="static/css/modal.css">
+      <link rel="stylesheet" type="text/css" href="static/css/checkout.css">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="static/css/responsive.css">
+      <!-- Scrollbar-->
+      <link rel="stylesheet" href="static/css/jquery.mCustomScrollbar.min.css">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      <!-- fonts -->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Nova+Square&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!-- owl stylesheets -->
+      <link href="https://fonts.googleapis.com/css?family=Great+Vibes|Poppins:400,700&display=swap&subset=latin-ext" rel="stylesheet">
+      <link rel="stylesheet" href="static/css/owl.carousel.min.css">
+      <link rel="stylesheet" href="static/css/owl.theme.default.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.5/jquery.fancybox.min.css" media="screen">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+   </head>
+   <body>
+      
+      <div class="banner_bg_main">
+         <!-- Header section start -->
+         <div class="container">
+            <div class="header_section_top">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="custom_menu">
+                        <ul>
+                           <li><a href="/base_test">Test</a></li>
+                           <li><a href="/trending">Trending</a></li>
+                           <li><a href="#reccomendations">Recommendations</a></li>
+                           <li><a href="{% url 'category' 'Tops' %}">Best Selling Tops</a></li>
+                           <li><a href="{% url 'category' 'Bottoms' %}">Best Selling Bottoms</a></li>
+                           <li><a href="{% url 'category' 'Footwear' %}">Best Selling Footwear</a></li>
+                           <li><a href="/customer">Customer Service</a></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+               
+            </div>
+            
+         </div>
+        
+         <!--Profile-->
+         
+         
+         {% block message %}{% endblock message %}
+         <!-- AICOMM section start -->
+         <div class="logo_section">
+            <div class="container">
+               <div class="row">
+                  <div class="col-sm-12">
+                     <div class="logo"><a href="/shop"><h2 class="banner_taital">AICOMM></h2><h2 class="banner_taital">{% block logo %}{% endblock logo %} </h2></a></div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         
+         <!-- header section start -->
+         <div class="header_section">
+            <div class="container">
+               <div class="containt_main">
+                  <div id="mySidenav" class="sidenav">
+                     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                     <a href="/shop">Home</a>
+                     <a href="/trending">Trending</a>
+                     <a href="{% url 'category' 'Tops' %}">Tops</a>
+                     <a href="{% url 'category' 'Bottoms' %}">Bottoms</a>
+                     <a href="{% url 'category' 'Footwear' %}">Footwear</a>
+                  </div>
+                  <span class="toggle_icon" onclick="openNav()"><img src="static/images/toggle-icon.png"></span>
+            
+                  <div class="main">
+                     <form method="GET" action="{% url 'search' %}">
+                     <div class="input-group">
+                        
+                        <input type="text" name="query" class="form-control" placeholder="Search">
+                        <div class="input-group-append">
+                           <button class="btn btn-secondary" type="submit" style="background-color: #24103b; border-color:#24103b ">
+                           <i class="fa fa-search"></i>
+                           </button>
+                        </div>
+                     
+                     </div>
+                  </form>
+                  </div>
+                  <div class="header_box">
+                    <!--{% block profile_modal %}{% endblock profile_modal %}--> 
+                     <div id="profileModal" class="modal">
+                        <div class="modal-content">
+                           <style>
+                              .close {
+                                  font-size: 44px;
+                                  cursor: pointer;
+                              }
+                          </style>
+                           <span class="close" onclick="closeProfileModal()">&times;</span> 
+                           <div class="container">
+                              <div class="row">
+                                 <div class="col-lg-4">
+                                    <!-- Profile Information -->
+                                    <div class="profile_info">
+                                       <h4 class="prof_text">Your Profile</h4>
+                                       <div class="card col-md-9" class="profile_bio">
+                                       <a href="{% url 'update_profile' %}"><img id="prof_img" style="border:4px solid #f7ba5b" src="static/images/profile.jpg" alt="Profile"></a>
+                                       <p class="prof_det" style="color:#f7ba5b">Username: {{request.user}}</p>
+                                       <p class="prof_det" style="color:#f7ba5b">{{request.user.userprofile.email}}</p>
+                                       
+                                    </div>
+                                    </div>
+                                    <div class="profile_info">
+                                       {% if top_category %}
+                                       <h4 class="prof_text">Profile Summary</h4>
+                                       <div class="Summ_bio">
+                                          <div class="tags">
+                                             <span class="tag">{{top_category.sub_category.category.name}}</span>
+                                             <span class="tag">{{top_subcategory.sub_category.sname}}</span>
+                                             <span class="tag">{{second_top_subcategory.sub_category.sname}}</span>
+                                             <span class="tag">{{top_color.p_color}}</span>
+                                             <span class="tag">{{second_top_color.p_color}}</span>
+                                             
+                                         </div>  
+                                    </div>
+                                    {% endif %}
+                                        <div class="recommendations">
+                                            <div style="margin-bottom:2px;">
+                                        <a href="/history" ><button class="buy_now_btn">Your History</button></a>
+                                       
+                                       <a href="/rev" ><button class="buy_now_btn">Your Reviews</button></a>
+                                            </div>
+                                       <a href="/recommendations" ><button class="buy_now_btn">Recommendations</button></a>
+                                        </div>
+                                    
+                                    </div>
+                                 </div>
+                                 
+                                 <div class="col-lg-4">
+                                    <!-- Recommendations Section -->
+                                    <div class="recommendations">
+                                       <h2>Recommended Products</h2>
+                                       <div class="scrollable-menu">
+                                          {%for data in data_list%}
+                                          
+                                          {% for item in data %}
+                                          
+                                          {% if item.id not in purchased_product_ids %}
+                                             {% if item.sub_category.category.name == top_category.sub_category.category.name or item.sub_category.sname == top_subcategory.sub_category.sname or item.p_color == top_color.p_color or item.sub_category.sname == second_top_subcategory.sub_category.sname or item.p_color == second_top_color.p_color %}
+                                                <div class="recommended_product">
+                                                   <a href="{% url 'prodView' myid=item.id %}"><img id="rec_img" src={{item.p_img}} alt="Product 1"></a>
+                                                   <p class="prof_det">{{item.p_name}}</p>
+                                                   <div class="tags">
+                                                   <span class="tag">{{item.sub_category.category.name}}</span>
+                                                   {% if item.sub_category.sname != item.sub_category.category.name %}
+                                                      <span class="tag">{{item.sub_category.sname}}</span>
+                                                   {% endif %}
+                                                   <span class="tag">{{item.p_color}}</span>
+                                                </div>
+                                                   <!--<a href="/mycart" ><button class="buy_now_btn">Buy Now</button></a>-->
+                                                   <div id="pr{{item.id}}"><a href="{% url 'add_to_cart' item.id %}"><button class="buy_now_btn">Add to cart</button></a></div>
+                                                </div>
+                                             {% endif %}
+                                          {% endif %}
+                                          {% endfor %}
+                                          {% endfor %}
+                                    </div>
+                                    </div>
+                                 </div>
+                                 <!--reccomendations section end-->
+                    
+                                 <div class="col-lg-4">
+                                       
+                                    <!-- History Section -->
+                                    <!---->
+                                    <div class="recommendations" >
+                                        <h2>Your History</h2>
+                                        <div class="scrollable-menu">
+                                       {% for purchase_history_item in purchase_history_items %}
+                                       <div class="recommended_product ">
+                                          <a href="{% url 'prodView' myid=purchase_history_item.product.id %}"><img id="rec_img" src={{ purchase_history_item.item_img.url }} alt="Product 1"></a>
+                                          <p class="prof_det">{{ purchase_history_item.item_name}}</p>
+                                          <div class="tags">
+                                             <span class="tag">{{purchase_history_item.item_cat}}</span>
+                                             {% if purchase_history_item.product.sub_category.sname != purchase_history_item.product.sub_category.category.name %}
+                                                <span class="tag">{{purchase_history_item.product.sub_category.sname}}</span>
+                                             {% endif %}
+                                             <span class="tag">{{purchase_history_item.product.p_color}}</span>
+                                         </div>
+                                          <button class="buy_now_btn" style="cursor:default">₹ {{purchase_history_item.product.p_price}}</button>
+                                       </div>
+                                       {%empty%}
+                                          <p style="font-size:40px;margin-top:200px;">Buy Some Items!</p>
+                                       {% endfor %}
+                                       
+                                    </div>
+                                     
+                                    </div>
+                                    
+                                 </div>
+                                 
+                              </div>
+                    
+                                  
+                           </div>
+                        </div>
+                        
+                     </div>
+                    <div class="login_menu">
+                                            
+                        {% if request.user.is_authenticated %}
+                        <ul>
+                        <li>
+                           <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                           <span class="padding_10"><a href="/mycart">Cart</span></a>
+                        </li>
+                        <li><!--<a href="{% url 'logout'%}">-->
+                           <i class="fa fa-user" aria-hidden="true"></i>
+                           
+                              <span class="padding_10"><a href="{% url 'logout' %}">Logout</a></span>
+                           </li>
+                           <li><!--<a href="{% url 'logout'%}">-->
+                              <i class="fa fa-user" aria-hidden="true"></i>
+                              
+                                 <span class="padding_10"><a href="{% url 'update_profile' %}">Update</a></span>
+                           </li>
+                              <li>
+                                 <a id="dash" href="#" onclick="openProfileModal()">
+                                    <i class="fa fa-user" aria-hidden="true"></i>
+                                    <span class="padding_10">Dashboard</span>
+                                 </a>
+                              
+                              </li>
+                           </ul>
+                           {% else %}
+                        <ul>
+                           <li>
+                           <i class="fa fa-user" aria-hidden="true"></i>
+                              <span class="padding_10"><a href="{% url 'login' %}">Login</a></span>
+                           </li>
+                        </ul>
+                           {% endif %}
+                        
+                        
+                        
+                     
+                    </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+         <!-- Trending section start -->
+         {% block history %}{% endblock history %}
+         {% block cart %}{% endblock cart %}
+         {% block checkout %}{% endblock checkout %}
+         {% block banner %}{% endblock banner %}
+         
+         {% block customer_form %}{% endblock customer_form %}  
+         {% block product_view %}{% endblock product_view %}
+         {% block search %}{% endblock search %}
+         {% block review %}{% endblock review %}
+         {% block cart_checkout %}{% endblock cart_checkout %}
+         {% block update_profile %}{% endblock update_profile %}
+         {% block recommendations %}{% endblock recommendations %}
+         {% block error %}{% endblock error %}
+      </div>
+      {% block tops %}{% endblock tops %}
+      {% block sweaters %}{% endblock sweaters %}
+      {% block bottoms %}{% endblock bottoms %}
+      
+
+
+      <div class="footer_section layout_padding">
+         <div class="container">
+            <div class="logo"><a href="/shop"><h2 class="banner_taital" id="foot">AICOMM></h2></a></div>
+            
+            <div class="footer_menu">
+               <ul>
+                  <li><a href="/trending">Trending</a></li>
+                  <li><a href="#reccomendations">Recommendations</a></li>
+                  <li><a href="{% url 'category' 'Tops' %}">Best Selling Tops</a></li>
+                  <li><a href="{% url 'category' 'Bottoms' %}">Best Selling Bottoms</a></li>
+                  <li><a href="{% url 'category' 'Footwear' %}">Best Selling Footwear</a></li>
+                  <li><a href="/customer">Customer Service</a></li>
+               </ul>
+            </div>
+            <div class="location_main">Customer Care : <a href="#">+1 0852 1356 2158</a></div>
+         </div>
+      </div>
+ 
+      <!-- copyright section start -->
+      <div class="copyright_section">
+         <div class="container">
+            <p class="copyright_text">© All Rights Reserved.</a></p>
+         </div>
+      </div>
+      <!-- copyright section end -->
+
+      <!-- Javascript files-->
+      <!--Jquery-->
+      <script src="static/js/jquery.min.js"></script>
+      <script src="static/js/popper.min.js"></script>
+      <script src="static/js/bootstrap.bundle.min.js"></script>
+      <script src="static/js/jquery-3.0.0.min.js"></script>
+      <script src="static/js/plugin.js"></script>
+      <script src="static/js/modal.js"></script>
+      <!-- Dashboard + sidebar -->
+      <script src="static/js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="static/js/mainscript.js"></script>
+      <script src="static/js/custom.js"></script>
+      <!--Cart Jquery-->
+      {% block js %}
+      <script>
+         //console.log("Working")
+         if(localStorage.getItem('cart')==null)
+         {
+            var cart={};
+         }
+         else
+         {
+            cart=JSON.parse(localStorage.getItem('cart'))
+            document.getElementById('cart').innerHTML=Object.keys(cart).length;
+         }
+         //console.log(cart)
+         $('.cart').click(function(){
+            //console.log("Clicked")
+            var idStr=this.id.toString()
+            //console.log(idStr)
+            if(cart[idStr]!=undefined){
+               cart[idStr]+=1;
+            }
+            else{
+               cart[idStr]=1;
+            }
+            //console.log(cart)
+            localStorage.setItem('cart',JSON.stringify(cart));
+         });
+         </script>{% endblock js %}
+
+         <script src="https://cdn.botpress.cloud/webchat/v1/inject.js">
+         </script>
+         <script src="https://mediafiles.botpress.cloud/240f3659-56c8-4114-a327-9c88e2760e16/webchat/config.js" defer></script>
+   </body>
+</html>

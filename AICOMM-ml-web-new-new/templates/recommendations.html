@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Recommendations{% endblock title %}
+{% block recommendations %}
+<div class="container" >
+    <h1>API Data</h1>
+    {% if data_list %}
+        <ul>
+            {%for data in data_list%}
+            
+                {% for item in data %}
+                
+                
+                        <div class="container">
+                            <style>
+                                .rev_box{
+                                    border:white solid 3px;
+                                    margin-top: 15px;
+                                    margin-bottom: 5px;
+                                    border-radius:5px;
+                                    width:250px;
+                                }
+                                </style>
+                            
+                            
+                            <div style="display:flex; margin-top:10px;">
+                            
+                            <img style="border: gold solid 4px; margin:5px; height:200px; " src="{{ item.p_img}}">       
+                            <div class="rev_box" style="margin-left:40px;">
+                            
+                            <p>Item name: {{ item.p_name}}</p>
+                            <p>Item Colour: {{ item.p_color }}</p>
+                            <p>{{ item.p_desc }}</p>
+                            <div class="tags" style="margin-left: 20px;">
+                                <span class="tag">{{ item.sub_category.sname }}</span>
+                                {% if item.sub_category.sname != item.sub_category.category.name %}
+                                    <span class="tag">{{ item.sub_category.category.name }}</span>
+                                {% endif %}
+                                <span class="tag">{{ item.p_color }}</span>
+                                <!-- Add more tags if needed -->
+                            </div>
+                            </div>
+                            
+                        </div>
+                      
+                        </div>
+                     
+                        {% endfor %}
+                    {% endfor %}
+                  
+           
+
+        </ul>
+    {% else %}
+        <p>No data available.</p>
+    {% endif %}
+    </div>
+{% endblock recommendations %}
+

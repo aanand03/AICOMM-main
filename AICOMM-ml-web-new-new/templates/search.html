@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block search %}
+   
+
+    {% if query %}
+    
+    <ul>
+    {% for result in results %}
+    <div class="container ">
+        <label class="ml-4 mt-4">Search Results for "{{ query }}"</label>
+        <div class="flex flex-col">    
+            <div class="row mt-4 mb-4 ml-4">
+                <img style="border: white solid 4px;" src="{{result.p_img.url}}">
+                <div>
+                    <ul>
+               <li> <label class="ml-4 "style="font-size: 25px;">{{result.p_name}}</label>
+                <li><label class="ml-4"style="font-size: larger;">Rs {{result.p_price}}</label>
+                    <li><label class="ml-4"style="font-size: larger;">Color: {{result.p_color}} <img style="border: white solid 2px; height:70px;" src="{{result.p_img.url}}"></label> 
+                        <li><label class="ml-4"style="font-size: larger;">Size: <div style="border: white solid 2px;">S M L XL</div></li> </label> 
+                    </ul>
+                </div>
+            </div>
+        <div class="row ml-2 mb-4">
+            <div class="btn_main padding_10">
+                
+                <div class="padding_10 "id="pr{{result.id}}"><a href="{% url 'checkout' myid=result.id %}"><button class="padding_10 paddingr_10">Buy Now</button></a></div>
+                <div class="ml-2" id="pr{{result.id}}"><a href="{% url 'add_to_cart' result.id %}"><button class="padding_10 paddingr_10">Add to Cart</button></a></div>
+                
+        </div>
+        </div>
+        </div>
+    {% empty %}
+    <div class="container ">
+        <li class="ml-4 mt-4">No results found.</li>
+    </div>
+    {% endfor %}
+    </ul>
+{% endif %}
+{% endblock %}

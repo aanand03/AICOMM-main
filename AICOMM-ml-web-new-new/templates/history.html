@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %}{{request.user}}'s Purchase History{% endblock title %}
+{% block history %}
+<div class="container">
+    
+    <div class="row mt-4">
+        {% for item in purchase_history_items %}
+        
+        <div class="col-lg-4 mb-5">
+            
+            <div class="card" style="background:#fff">
+                <img class="hist_img" src="{{ item.item_img.url }}" class="card-img-top" alt="{{ item.item_name }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ item.item_name }}</h5>
+                    <h3 class="card-text">{{ item.item_price }}</p>
+                    <h4 class="card-text">Bought at: {{ item.timestamp }}</p>
+                    <button class="btn btn-primary">Rating: 3/5</button>
+                </div>
+            </div>
+            <form method="post" action="{% url 'review' %}">
+                {% csrf_token %}
+                <input type="hidden" name="item_id" value="{{ item.id }}">
+                <div class="form-group">
+                    <label for="review">Add Your Review:</label>
+                    <textarea class="form-control" id="review" name="review" rows="3"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="rating">Rating:</label>
+                    <div>
+                        <input type="radio" id="rating1" name="rating" value="1">
+                        <label for="rating1">1</label>
+                        <input type="radio" id="rating2" name="rating" value="2">
+                        <label for="rating2">2</label>
+                        <input type="radio" id="rating3" name="rating" value="3">
+                        <label for="rating3">3</label>
+                        <input type="radio" id="rating4" name="rating" value="4">
+                        <label for="rating4">4</label>
+                        <input type="radio" id="rating5" name="rating" value="5">
+                        <label for="rating5">5</label>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit Review</button>
+            </form>
+            <div>
+                
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock history %}
